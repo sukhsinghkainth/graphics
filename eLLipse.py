@@ -58,9 +58,9 @@ def Polar_Domain_Ellipse_draw(h, k, a, b):
     Put_Ellipse_Pixel(h, k, x, y)
     pi_by_2 = pi / 2
     while Theta <= pi_by_2:
-        Theta = Theta + dTHeta
         x = a * cos(Theta)
         y = b * sin(Theta)
+        Theta = Theta + dTHeta
         Put_Ellipse_Pixel(h, k, round(x), round(y))
         time.sleep(0.01)
 
