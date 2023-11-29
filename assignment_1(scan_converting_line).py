@@ -32,7 +32,7 @@ win = gr.GraphWin("Line Drawing", 1024, 768)
 win.setBackground("black")
 
 
-def linedraw(x, y, colors, win):
+def pointDraw(x, y, colors, win):
     pnt = gr.Point(x, y)
     pnt.setFill(colors)
     pnt.draw(win)
@@ -53,7 +53,7 @@ def draw_direct(x1, y1, x2, y2, colors):
     dy = y2 - y1
     adx, ady = abs(dx), abs(dy)
     if dx == 0 and dy == 0:
-        linedraw(x1, y1, colors, win)
+        pointDraw(x1, y1, colors, win)
         return
     if adx == 0:
         x_inc = 0
@@ -68,7 +68,7 @@ def draw_direct(x1, y1, x2, y2, colors):
     x, y = x1, y1
 
     linedrawbefore(x1, y1, x2, y2, win)
-    linedraw(x, y, colors, win)
+    pointDraw(x, y, colors, win)
 
     if adx >= ady:
         m = dy / dx
@@ -76,12 +76,12 @@ def draw_direct(x1, y1, x2, y2, colors):
         while x != x2:
             x = x + x_inc
             y = m * x + b
-            linedraw(x, y, colors, win)
+            pointDraw(x, y, colors, win)
     else:
         if dx == 0:
             while y != y2:
                 y = y + y_inc
-                linedraw(x, y, colors, win)
+                pointDraw(x, y, colors, win)
             return
 
         m = dy / dx
@@ -90,7 +90,7 @@ def draw_direct(x1, y1, x2, y2, colors):
         while y != y2:
             y = y_inc + y
             x = m_inv * (y - b)
-            linedraw(x, y, colors, win)
+            pointDraw(x, y, colors, win)
 
 
 # Function to draw lines using the Parametric Method
@@ -109,13 +109,13 @@ def draw_parametric(x1, y1, x2, y2, colors):
 
     u = 0
     x, y = x1, y1
-    linedraw(x, y, colors, win)
+    pointDraw(x, y, colors, win)
 
     while u <= 1:
         u += u_inc
         x = x1 + u * dx
         y = y1 + u * dy
-        linedraw(x, y, colors, win)
+        pointDraw(x, y, colors, win)
 
 
 # Function to draw lines using the DDA Method
@@ -133,12 +133,12 @@ def draw_dda(x1, y1, x2, y2, colors):
     linedrawbefore(x1, y1, x2, y2, win)
 
     x, y = x1, y1
-    linedraw(x, y, colors, win)
+    pointDraw(x, y, colors, win)
     k = 1
     while k != steps:
         x, y = x + x_inc, y + y_inc
         k += 1
-        linedraw(x, y, colors, win)
+        pointDraw(x, y, colors, win)
 
 
 # Function to draw lines using the Bresenham Method
@@ -170,7 +170,7 @@ def draw_bresenham(x1, y1, x2, y2, colors):
                 p = p + 2 * ady - 2 * adx
                 y = y + yinc
             x = x + xinc
-            linedraw(x, y, colors, win)
+            pointDraw(x, y, colors, win)
     else:
         p = 2 * adx - ady
         while y != y2:
@@ -180,7 +180,7 @@ def draw_bresenham(x1, y1, x2, y2, colors):
                 p = p + 2 * adx - 2 * ady
                 x = x + xinc
             y = y + yinc
-            linedraw(x, y, colors, win)
+            pointDraw(x, y, colors, win)
 
 
 # Draw lines using the selected method
