@@ -102,8 +102,6 @@ def draw_parametric(x1, y1, x2, y2, colors):
 
     if steps == 0:
         u_inc = 1
-    elif steps == abs(dx):
-        u_inc = 1 / steps
     else:
         u_inc = 1 / steps
 
